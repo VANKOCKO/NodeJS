@@ -1,10 +1,12 @@
     var http = require('http');
     var url =require('url');
     var queryString = require('querystring');
+    var EventEmitter = require('events').EventEmitter;
+    var monmodule  = require('./node_modules/monmodule');
     var server = http.createServer(function(req, res) 
     {
         var page=url.parse(req.url).pathname;
-        console.log(page);
+
         var params=queryString.parse(url.parse(req.url).query);
         /** 
                 //decoupe de l'url  
@@ -35,16 +37,36 @@
 /**
  *  Les evenements
  */
+            server.on('close',function () {
+            // faire quelques choses ici 
+            console.log("bye bye"); 
+            });
+            /**
+             *  creation d'un evenement
+             */
+            
+            // initialisation de l'evenement 
+            var jeu = new EventEmitter();
+            //ecouter une evenement
+            jeu.on('gameover',function(message) {
+                console.log(message);
+            })
+            // emmetre un evenement  
+            jeu.emit('gameover','Vous avez perdu !');
 
-server.on('close',function () {
+/**
+ *  Les modules
+ */
+            console.log(monmodule.direBonjour);
+  
+            
 
-    // faire quelques choses ici 
-   console.log("bye bye"); 
+/**
+ *  Express
+ */     
 
-}); 
+ var app = express();
 
-
-
+ 
 server.listen(9092);
-
-server.close();
+//server.close(); 
