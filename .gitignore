@@ -5,4 +5,4 @@ package-lock.json
 *.gz
 .DS_Store*
 Icon?
-._*
+._*nofde 
