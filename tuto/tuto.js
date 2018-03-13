@@ -3,6 +3,7 @@
     var queryString = require('querystring');
     var EventEmitter = require('events').EventEmitter;
     var monmodule  = require('./node_modules/monmodule');
+    var express =require('express');
     var server = http.createServer(function(req, res) 
     {
         var page=url.parse(req.url).pathname;
@@ -56,21 +57,21 @@
 
 /**
  *  Les modules
- */
-            console.log(monmodule.direBonjour);
+ **/
+          //  console.log(monmodule.direBonjour);
   
             
 
 /**
  *  Express
  */     
-
- /**
-  *  test
-  */
- 
- var app = express();
-
+           
+           var app = express();
+           // creation de route 
+           app.get('/accueil', function (req,res) {
+             res.setHeader('Content-Type','text/plain');
+             res.send('Vous etes dans l\'acceuil');
+           });
  
 server.listen(9092);
 //server.close(); 
